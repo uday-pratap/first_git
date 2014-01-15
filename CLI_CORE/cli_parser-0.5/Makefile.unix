@@ -1,0 +1,13 @@
+# Makefile for UNIX
+
+
+PLATFORM = unix
+
+MODULE_LIST = .
+
+LIBRARY = libcparser.a
+
+TEST_LIST = ./test_parser
+
+include toplevel.mk
+

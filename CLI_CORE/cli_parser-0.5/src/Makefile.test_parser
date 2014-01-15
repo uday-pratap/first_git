@@ -1,0 +1,18 @@
+# Makefile for parser library test program.
+
+CLI_FLAGS += -D TEST_LABEL1
+
+SRC_BASE = ..
+SRC_FILES += cparser_tree_$(PLATFORM).c test_cli_cmd.c test_parser.c
+SRC_INC += -I $(PLATFORM)/
+SRC_BIN = test_parser
+VPATH += $(PLATFORM)/
+
+cparser_tree_$(PLATFORM).c: test.cli 
+	$(SRC_BASE)/scripts/mk_parser.py $(CLI_FLAGS) test.cli
+	mkdir -p $(PLATFORM)
+	mv cparser_tree.c cparser_tree_$(PLATFORM).c
+	mv cparser_tree.h $(PLATFORM)/
+
+include $(SRC_BASE)/rules.mk
+
